@@ -1,4 +1,4 @@
-package com.example.Thanks.Bonus.Controllers;
+/*package com.example.Thanks.Bonus.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,8 +12,9 @@ public class RemindController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
-	public String getRemind(ModelMap model){
-		return "Remind";
+	public String getRemind(){
+		return "Sssssss";
 	}
 
 }
+*/
