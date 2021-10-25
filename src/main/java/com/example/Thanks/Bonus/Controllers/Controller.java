@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("bank")
+@RequestMapping("message")
 public class Controller {
 	private final bankInfoRepo bankInfoRepo;
 
