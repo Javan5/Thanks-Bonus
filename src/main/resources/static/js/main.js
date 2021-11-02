@@ -1,23 +1,23 @@
-var messageApi = Vue.resource('/messages{/id}');
-Vue.component('message-row', {
+var messageApi = Vue.resource('/message{/id}');
+/*Vue.component('message-row', {
 	props: ['message'],
 	template: '<div><i>({{ message.id }})</i> {{ message.text }}</div>'
-});
+});*/
 
 Vue.component('message-form', {
 	props: ['messages'],
-	date: function() {
+	data: function() {
 		return {
-			text: ' '
+			text: ''
 		}
 	},
 	template:
 		'<div>'+
-			'<input type="text" placeholder="Write something" v-model = "text"/>'+
+			'<input type="text" placeholder="Write banks" v-model = "text"/>'+
 			'<input type="button" value="Save" @click="save" />'+
 			'</div>',
 	methods: {
-		click: function() {
+		save: function() {
 				var message = { text: this.text };
 				messageApi.save({}, message).then( result =>
 					result.json().then(data => {
@@ -27,6 +27,12 @@ Vue.component('message-form', {
 		}
 	}
 });
+
+Vue.component('message-row',{
+	props: ['message'],
+	template: '<div><i>({{ message.id}}) </i> {{message.text }} </div></i>'
+});
+
 Vue.component('messages-list', {
 	props: ['messages'],
 	template:
@@ -45,7 +51,7 @@ Vue.component('messages-list', {
 
 var app = new Vue ({
 	el: '#app',
-	template: '<messages-list :messages=messages"/>',
+	template: '<messages-list :messages="messages"/>',
 	data: {
 		messages: []
 	}
