@@ -50,6 +50,17 @@ Vue.component('bank-form', {
 	}
 });
 
+Vue.component('my-button', {
+	template: `
+    <form :action="this.link">
+        <input type="submit" value="Go to Google" />
+    </form>
+  `,
+	props: {
+		link: '',
+	}
+});
+
 Vue.component('bank-row',{
 	props: ['bankInfo', 'editMethod', 'banks'],
 	template: '<div>' +
@@ -104,6 +115,7 @@ var app = new Vue ({
 	el: '#app',
 	template: '<banks-list :banks="banks"/>',
 	data: {
-		banks: []
+		banks: [],
+		link: 'google.com'
 	}
 });
