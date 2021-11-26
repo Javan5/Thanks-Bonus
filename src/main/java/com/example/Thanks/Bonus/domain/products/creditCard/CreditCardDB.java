@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"id"})
-public class creditCardDB {
+public class CreditCardDB {
 
 
 	@Id
@@ -36,6 +36,15 @@ public class creditCardDB {
 	@Nullable
 	private double cashback;
 	//private double cashbackMax;
+
+
+	public CreditCardDB(Long id, String name, int grPeriod, int limit, double cashback) {
+		this.id = id;
+		this.name = name;
+		this.grPeriod = grPeriod;
+		this.limit = limit;
+		this.cashback = cashback;
+	}
 
 	public String ToString()
 	{

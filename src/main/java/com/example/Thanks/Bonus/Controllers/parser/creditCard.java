@@ -21,11 +21,13 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 public class creditCard {
 
-
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private int id;
 	@NotNull
 	private String name;
 	@NotNull
@@ -41,4 +43,17 @@ public class creditCard {
 	{
 			return name + ". Льготный период: " + Integer.toString(grPeriod) + " дней. Кредитный лимит: " + (new DecimalFormat( "###,###,###" ).format(limit));
 	}
+
+	public creditCard(int id, String name, int grPeriod, int limit, double cashback) {
+		this.id = id;
+		this.name = name;
+		this.grPeriod = grPeriod;
+		this.limit = limit;
+		this.cashback = cashback;
+	}
+
+	public creditCard() {
+
+	}
+
 }

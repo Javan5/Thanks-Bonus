@@ -68,8 +68,8 @@ public class Sber {
 		  texTT = cardInfoz.text();
 		 texTT = texTT.split(" ")[0];
 		 System.out.println("KYKY");
-		 creditCard rencr = new creditCard(cardName.text(), Integer.parseInt(cardInfoz.text().split(" ")[0]), Integer.parseInt(cardInfozz.text().replaceAll("\\s+","")), 0);
-		 System.out.println(rencr.ToString());
+	//	 //creditCard rencr = new creditCard(cardName.text(), Integer.parseInt(cardInfoz.text().split(" ")[0]), Integer.parseInt(cardInfozz.text().replaceAll("\\s+","")), 0);
+		// System.out.println(rencr.ToString());
 		 System.out.println(texTT);
 
 		 //texTT = texTT.substring(0, texTT.indexOf(' '));
