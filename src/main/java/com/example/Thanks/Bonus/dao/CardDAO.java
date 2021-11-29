@@ -1,22 +1,21 @@
 package com.example.Thanks.Bonus.dao;
 
-import com.example.Thanks.Bonus.Controllers.parser.creditCard;
-import com.example.Thanks.Bonus.domain.products.creditCard.CreditCardDB;
+import com.example.Thanks.Bonus.Controllers.parser.CreditCard;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface CardDAO {
-	void add(CreditCardDB creditCardDB) throws SQLException;
-	void addCreditCard(creditCard creditCard)throws SQLException;
+	//void add(CreditCardDB creditCardDB) throws SQLException;
+	void addCreditCard(CreditCard creditCard)throws SQLException;
 
-	List<creditCard> getAll() throws SQLException;
+	List<CreditCard> getAll() throws SQLException;
 
-	creditCard getById(Long id) throws SQLException;
+	CreditCard getById(Long id) throws SQLException;
 
-	void update(creditCard creditCard) throws SQLException;
+	void update(CreditCard creditCard) throws SQLException;
 
-	void delete(creditCard creditCard) throws SQLException;
+	void delete(CreditCard creditCard) throws SQLException;
 
 
 

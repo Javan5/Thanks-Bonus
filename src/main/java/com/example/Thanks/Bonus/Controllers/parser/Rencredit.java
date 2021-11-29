@@ -1,6 +1,8 @@
 package com.example.Thanks.Bonus.Controllers.parser;
 
+import com.example.Thanks.Bonus.domain.products.creditCard.CreditCards;
 import com.example.Thanks.Bonus.service.CardService;
+import com.example.Thanks.Bonus.service.CreditCardService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,7 +13,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.Thanks.Bonus.service.CardService;
 
 public class Rencredit {
 	private static Document getPageRenCredit() throws IOException {
@@ -22,7 +23,7 @@ public class Rencredit {
 
 	public static void main(String [] args) throws IOException, SQLException {
 		Document page = getPageRenCredit();
-		List<creditCard> sberList = new ArrayList<>();
+		List<CreditCard> sberList = new ArrayList<>();
 		Document doc = Jsoup.connect("https://rencredit.ru/cards/").get();
 		Elements oneElements = doc.getElementsByAttributeValue("class", "card-detail__content");
 		for ( int i=0; i<2; i++)  //Две первые кредитные карты ренкредита
@@ -35,11 +36,19 @@ public class Rencredit {
 			cardInfo = zeroElement.child(0).attr("class", "card-detail__value card-detail__value--special");
 			Element cardInfoz = cardInfo.child(0).child(1).child(1);
 			Element cardInfozz = cardInfo.child(1).child(1).child(1);
-			creditCard rencr = new creditCard(i+1, cardName.text(), Integer.parseInt(cardInfoz.text().split(" ")[0]), Integer.parseInt(cardInfozz.text().replaceAll("\\s+","")), 0);
+			CreditCard rencr = new CreditCard(i+1, cardName.text(), Integer.parseInt(cardInfoz.text().split(" ")[0]), Integer.parseInt(cardInfozz.text().replaceAll("\\s+","")), 0);
 			System.out.println(rencr.ToString());
 			CardService cardService = new CardService();
 			cardService.addCreditCard(rencr);
-
+			CreditCardService creditCardService = new CreditCardService();
+			CreditCards creditCards = new CreditCards();
+/*
+			creditCards.setCashback(null);
+*/
+			creditCards.setGrPeriod(Integer.parseInt(cardInfoz.text().split(" ")[0]));
+			creditCards.setLimit(Integer.parseInt(cardInfozz.text().replaceAll("\\s+","")));
+			creditCards.setName(cardName.text());
+			creditCardService.addCreditCard(creditCards);
 		}
 		//addCreditCard()
 

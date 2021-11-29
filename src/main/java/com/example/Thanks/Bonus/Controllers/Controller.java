@@ -1,8 +1,8 @@
 package com.example.Thanks.Bonus.Controllers;
 
 
-import com.example.Thanks.Bonus.domain.bankInfo;
-import com.example.Thanks.Bonus.repository.bankInfoRepo;
+import com.example.Thanks.Bonus.domain.BankInfo;
+import com.example.Thanks.Bonus.repository.BankInfoRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,20 +20,20 @@ import java.util.List;
 @RestController
 @RequestMapping("bankInfo")
 public class Controller {
-	private final bankInfoRepo bankInfoRepo;
+	private final BankInfoRepo bankInfoRepo;
 
 	@Autowired
-	public Controller(bankInfoRepo bankInfoRepo) {
+	public Controller(BankInfoRepo bankInfoRepo) {
 		this.bankInfoRepo = bankInfoRepo;
 	}
 
 	@GetMapping
-	public List<bankInfo> list(){
+	public List<BankInfo> list(){
 		return bankInfoRepo.findAll();
 	}
 
 	@GetMapping("{id}")
-	public bankInfo getOne(@PathVariable("id") bankInfo bankInfo) {
+	public BankInfo getOne(@PathVariable("id") BankInfo bankInfo) {
 		return bankInfo;
 	}
 
@@ -45,22 +45,22 @@ public class Controller {
 	}
 */
 	@PostMapping
-	public bankInfo create(@RequestBody bankInfo bankInfo) {
+	public BankInfo create(@RequestBody BankInfo bankInfo) {
 		bankInfo.setDateTime(LocalDateTime.now());
 		return bankInfoRepo.save(bankInfo);
 	}
 
 	@PutMapping("{id}")
-	public bankInfo update(
-			@PathVariable("id") bankInfo bankInfoFromDb,
-			@RequestBody bankInfo bankInfo
+	public BankInfo update(
+			@PathVariable("id") BankInfo bankInfoFromDb,
+			@RequestBody BankInfo bankInfo
 	) {
 		BeanUtils.copyProperties(bankInfo, bankInfoFromDb, "id");
 		return bankInfoRepo.save(bankInfoFromDb);
 	}
 
 	@DeleteMapping("{id}")
-	public void delete(@PathVariable("id") bankInfo bankInfo) {
+	public void delete(@PathVariable("id") BankInfo bankInfo) {
 		bankInfoRepo.delete(bankInfo);
 	}
 }

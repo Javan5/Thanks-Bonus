@@ -34,7 +34,7 @@ public class Sber {
 
 
 
-	 List<creditCard> sberList = new ArrayList<>();
+	 List<CreditCard> sberList = new ArrayList<>();
 	 Document doc = Jsoup.connect("https://rencredit.ru/cards/").get();
 	 Elements oneElements = doc.getElementsByAttributeValue("class", "card-detail__content");
 	 //System.out.println(oneElements);

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.example.Thanks.Bonus.domain.products.creditCard.CreditCards" table="CREDITCARD">
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+		<property name="name" type="string">
+			<column name="NAME" length="255" not-null="false" />
+		</property>
+		<property name="grPeriod" type="int">
+			<column name="GRPERIOD" not-null="false" />
+		</property>
+		<property name="limit" type="int">
+			<column name="LIMITS" not-null="false" />
+		</property>
+		<property name="cashback" type="double">
+			<column name="CASHBACK" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

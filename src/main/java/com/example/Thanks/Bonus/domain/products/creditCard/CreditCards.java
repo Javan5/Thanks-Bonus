@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,35 +17,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "CREDITCARD")
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"id"})
-public class CreditCardDB {
+public class CreditCards {
 
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int id;
 	@NotNull
+	@Column(name = "NAME")
 	private String name;
 	@NotNull
+	@Column(name = "GRPERIOD")
 	private int grPeriod;
 	@NotNull
+	@Column(name = "LIMITS")
 	private int limit;
 
 	@Nullable
+	@Column(name = "CASHBACK")
 	private double cashback;
 	//private double cashbackMax;
 
 
-	public CreditCardDB(Long id, String name, int grPeriod, int limit, double cashback) {
-		this.id = id;
-		this.name = name;
-		this.grPeriod = grPeriod;
-		this.limit = limit;
-		this.cashback = cashback;
-	}
+
 
 	public String ToString()
 	{

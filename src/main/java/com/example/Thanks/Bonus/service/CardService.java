@@ -1,28 +1,14 @@
 package com.example.Thanks.Bonus.service;
 
-import com.example.Thanks.Bonus.Controllers.parser.creditCard;
+import com.example.Thanks.Bonus.Controllers.parser.CreditCard;
 import com.example.Thanks.Bonus.dao.CardDAO;
 
-import com.example.Thanks.Bonus.domain.bankInfo;
-import com.example.Thanks.Bonus.domain.products.creditCard.CreditCardDB;
-import com.example.Thanks.Bonus.repository.products.creditCard.CardCredit;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +67,7 @@ public class CardService implements CardDAO {
 Connection connection = open();
 
 
-	@Override
+/*	@Override
 	public void add(CreditCardDB creditCardDB) throws SQLException {
 		PreparedStatement preparedStatement = null;
 
@@ -104,9 +90,9 @@ Connection connection = open();
 			 	connection.close();
 			 }
 		}
-	}
+	}*/
 
-	public void addCreditCard(creditCard creditCard) throws SQLException {
+	public void addCreditCard(CreditCard creditCard) throws SQLException {
 		PreparedStatement preparedStatement = null;
 
 		String sql = "INSERT INTO public.\"creditCardDB\" ( ID, namecard, \"grPeriod\", limits, cashback) VALUES(?, ?, ?, ?, ?)";
@@ -132,8 +118,8 @@ Connection connection = open();
 
 
 	@Override
-	public List<creditCard> getAll() throws SQLException {
-		List<creditCard> creditCardList = new ArrayList<>();
+	public List<CreditCard> getAll() throws SQLException {
+		List<CreditCard> creditCardList = new ArrayList<>();
 		String sql = "SELECT ( ID, namecard, \"grPeriod\", limits, cashback) FROM public.\"creditCardDB\"";
 
 		Statement statement = null;
@@ -142,7 +128,7 @@ Connection connection = open();
 			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next()) {
-				creditCard creditCard = new creditCard();
+				CreditCard creditCard = new CreditCard();
 				creditCard.setId(resultSet.getInt("ID"));
 				creditCard.setName(resultSet.getString("namecard"));
 				creditCard.setGrPeriod(resultSet.getInt("\"grPeriod\""));
@@ -165,11 +151,11 @@ Connection connection = open();
 	}
 
 	@Override
-	public creditCard getById(Long id) throws SQLException {
+	public CreditCard getById(Long id) throws SQLException {
 		PreparedStatement preparedStatement = null;
 
 		String sql = "SELECT ( ID, namecard, \"grPeriod\", limits, cashback) FROM public.\"creditCardDB\" WHERE ID=?";
-		creditCard creditCard = new creditCard();
+		CreditCard creditCard = new CreditCard();
 		try{
 				preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setLong(1, id);
@@ -195,7 +181,7 @@ Connection connection = open();
 	}
 
 	@Override
-	public void update(creditCard creditCard) throws SQLException {
+	public void update(CreditCard creditCard) throws SQLException {
 		PreparedStatement preparedStatement = null;
 
 		String sql = "UPDATE public.\"creditCardDB\" SET (cashback=?,limits=?,\"grPeriod\"=?, namecard=?) WHERE ID=?";
@@ -222,7 +208,7 @@ Connection connection = open();
 	}
 
 	@Override
-	public void delete(creditCard creditCard) throws SQLException {
+	public void delete(CreditCard creditCard) throws SQLException {
 		PreparedStatement preparedStatement =null;
 		String sql = "DELETE FROM  public.\"creditCardDB\" WHERE ID=?";
 

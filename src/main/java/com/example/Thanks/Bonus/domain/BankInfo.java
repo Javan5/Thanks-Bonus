@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Setter
 @ToString(of = {"id", "text"})
 @EqualsAndHashCode(of = {"id"})
-public class bankInfo {
+public class BankInfo {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)

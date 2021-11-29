@@ -24,11 +24,12 @@ public class Alfabank {
 			Element oneElement = oneElements.get(i);
 			Element cardInfo = oneElement.child(1).attr("class", "k3Dntr l3Dntr");
 			Elements divs = cardInfo.select("span > a > img");
-			//Elements divv = divs.select("img[alt]").first().ownText();
-
+			cardInfo = oneElement.child(3);
+			//System.out.println(cardInfo.select("p"));
 			String text = cardInfo.text();
-			//zeroElement = oneElement.child(1);
 			System.out.println(divs.attr("alt"));
+			divs= cardInfo.attr("class", "a2swtV l2swtV x2swtV H2swtV e23Qzr R23Qzr").select("p").attr("class", "a2swtV l2swtV x2swtV H2swtV e23Qzr R23Qzr").select("p");
+		//	System.out.println(divs.attr());
 		}
 	}
 }
